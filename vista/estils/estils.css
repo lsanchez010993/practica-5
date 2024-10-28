@@ -1,0 +1,153 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    background-image: url('../imagenes/fondosPantalla/reno.jpg');
+    background-size: cover;
+    /* Ajusta el tamaño de la imagen para cubrir toda el área */
+    background-position: center;
+    /* Centra la imagen */
+    background-repeat: no-repeat;
+    /* Evita que la imagen se repita */
+    font-family: 'Open Sans Condensed', sans-serif;
+    padding-top: 50px;
+    /* Esto crea espacio para .inicio */
+
+
+}
+
+/* Form Container */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+/* Form Labels */
+form label {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Form Inputs and Textareas */
+form input[type="text"],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+form textarea {
+    resize: vertical;
+    /* Allow the user to resize the textarea vertically */
+}
+
+/* Form Buttons */
+form button[type="submit"],
+button[type="button"] {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+button[type="button"] {
+    background-color: #007bff;
+}
+
+form button[type="submit"]:hover,
+button[type="button"]:hover {
+    background-color: #218838;
+}
+
+button[type="button"]:hover {
+    background-color: #0056b3;
+}
+
+/* Success Message */
+p {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+p[style*="color: green"] {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+/* Error Message */
+p[style*="color: red"] {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+/* Button Container */
+button {
+    display: inline-block;
+    margin-top: 10px;
+    align-items: end;
+}
+
+/* Contenedor para los botones dentro del formulario */
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    /* Para distribuir los botones */
+    margin-top: 15px;
+    /* Espacio superior entre el formulario y los botones */
+}
+
+/* Botones individuales */
+form button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button[type="button"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Hover effects */
+form button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+form button[type="button"]:hover {
+    background-color: #0056b3;
+}
