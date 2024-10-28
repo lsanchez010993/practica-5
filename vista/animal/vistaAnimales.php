@@ -29,7 +29,7 @@ const ARTICULOS_POR_PAGINA = 4; //Esta opcion se le podria preguntar al usuario.
                 // Establecer la página actual
                
                 require_once __DIR__ . '../../../modelo/conexion.php';
-                require_once 'modelo/articulo/contarArticulos.php';
+                require_once 'modelo/articulo/contarAnimal.php';
                 // Número total de artículos (puedes obtener esto de tu base de datos)
                 $totalArticulos = contarArticulos(); // Asume que obtienes el total de artículos desde la base de datos
 
@@ -50,7 +50,7 @@ const ARTICULOS_POR_PAGINA = 4; //Esta opcion se le podria preguntar al usuario.
                 // Calcular desde qué artículo iniciar
                 $start = ($pagina > 1) ? ($pagina * ARTICULOS_POR_PAGINA) - ARTICULOS_POR_PAGINA : 0;
 
-                require_once 'modelo/articulo/limit_articulos_por_pagina.php';
+                require_once 'modelo/articulo/limit_animales_por_pagina.php';
                 //compruebo si el usuario ha iniciado sesion. Si la ha iniciado guardo su user_id.
                 $user_id = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : null;
 
@@ -75,7 +75,7 @@ const ARTICULOS_POR_PAGINA = 4; //Esta opcion se le podria preguntar al usuario.
             <ul>
                 <?php
                 // Consulta para contar el número total de artículos
-                require_once 'modelo/articulo/contarArticulos.php';
+                require_once 'modelo/articulo/contarAnimal.php';
                 $totalArticles = contarArticulos($user_id);
 
                 // Calcular el número total de páginas

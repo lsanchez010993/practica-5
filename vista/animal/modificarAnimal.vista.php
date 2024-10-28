@@ -1,6 +1,6 @@
 <?php
 require_once '../../controlador/userController/verificarSesion.php';
-require_once '../../controlador/articuloController/modificarArticulo.controller.php';
+require_once '../../controlador/articuloController/modificarAnimal.controller.php';
 require_once '../../controlador/errores/errores.php';
 
 verificarSesion();

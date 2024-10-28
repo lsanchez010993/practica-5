@@ -1,5 +1,5 @@
 <?php
-function obtenerArticuloPorId($id) {
+function obtenerAnimalPor_Id($id) {
     try {
         require_once __DIR__ . '/../conexion.php';
         $pdo = connectarBD();

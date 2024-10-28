@@ -36,7 +36,7 @@ function listarArticulos($animales, $accion = null, $paginaActual = 1, $totalPag
 
             // Opciones de edición si corresponde
             if ($accion == 'editar') {
-                echo "<a href='modelo/articulo/eliminarArticulo.php?id=" . $animal['id'] . "' onclick='return confirmarEliminacion()'>
+                echo "<a href='modelo/articulo/eliminarAnimal.php?id=" . $animal['id'] . "' onclick='return confirmarEliminacion()'>
                         <img src='./vista/imagenes/iconos/eliminar.png' alt='Eliminar' width='20' height='20'>
                       </a>";
 

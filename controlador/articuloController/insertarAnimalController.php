@@ -1,7 +1,7 @@
 <?php
 
 require_once '../../controlador/userController/verificarSesion.php';
-require_once '../../modelo/articulo/insertarArticulo.php';
+require_once '../../modelo/articulo/insertarAnimal.php';
 require_once '../../controlador/errores/errores.php';
 
 verificarSesion();
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         if (empty($errores)) {
-            require_once '../../modelo/articulo/insertarArticulo.php';
+            require_once '../../modelo/articulo/insertarAnimal.php';
             $usuario_id = $_SESSION['usuario_id'];
 
             $resultado = insertarAnimal($nombre_comun, $nombre_cientifico, $descripcion, $rutaImagenBD, $usuario_id, $es_mamifero);

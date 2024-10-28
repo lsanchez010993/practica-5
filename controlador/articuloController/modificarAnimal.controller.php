@@ -11,8 +11,8 @@ function leerAnimal()
     ];
     $result['id'] = $_GET['id'];
 
-    require_once "../../modelo/articulo/obtenerArticuloPorId.php";
-    $animal = obtenerArticuloPorId($result['id']);
+    require_once "../../modelo/articulo/obtenerAnimalPor_Id.php";
+    $animal = obtenerAnimalPor_Id($result['id']);
 
     if ($animal) {
         $result['nombre_comun'] = $animal['nombre_comun'];
@@ -67,7 +67,7 @@ function controllerModificarAnimal()
 
 function actualizar_animal($id, $nombre_comun, $nombre_cientifico, $descripcion, $rutaImagen, $es_mamifero)
 {
-    require_once "../../modelo/articulo/insertarArticulo.php";
+    require_once "../../modelo/articulo/insertarAnimal.php";
 
     $resultado = actualizarAnimal($id, $nombre_comun, $nombre_cientifico, $descripcion, $rutaImagen, $es_mamifero);
 
