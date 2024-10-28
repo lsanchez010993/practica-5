@@ -25,20 +25,20 @@
          <button onclick="location.href='vista/usuaris/crearUsuario.php'">Registrarse</button>
          </div> 
 HTML;
-        include_once 'vista/articles/vistaArticulos.php';
+        include_once 'vista/animal/vistaAnimales.php';
     } else {
         $nombre = $_SESSION['nombre_usuario'];
        
         echo <<<HTML
     <div class="inicio">
     <h2>Bienvenido: $nombre </h2>;
-    <button onclick="location.href='vista/articles/insertarNuevoArticulo.php'">Insertar Nuevo Articulo</button>
+    <button onclick="location.href='vista/animal/insertarNuevoAnimal.php'">Insertar Nuevo Articulo</button>
     <button onclick="location.href='modelo/user/cerrarSesion.php'">Cerrar Sesión</button>
 
   </div> 
 HTML;
         // Si el usuario ha iniciado sesión, mostrar artículos solo del usuario
-        include_once 'vista/articles/vistaArticulos.php';
+        include_once 'vista/animal/vistaAnimales.php';
     }
     ?>
 </body>

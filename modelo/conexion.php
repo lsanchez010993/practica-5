@@ -1,7 +1,7 @@
 <?php
 function connectarBD() {
     $host = 'localhost';
-    $dbname = 'pt04_luis_sanchez';
+    $dbname = 'pt05_luis_sanchez';
     $username = 'root';
     $password = '';
 

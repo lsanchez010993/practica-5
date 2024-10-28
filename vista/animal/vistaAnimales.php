@@ -1,6 +1,6 @@
 <?php
 // He definido una constante para que resulte más facil modificar el numero de artículos que debe mostrarse por página
-const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario. Iconos que muestren 5, 10 15 articulos por pagina
+const ARTICULOS_POR_PAGINA = 4; //Esta opcion se le podria preguntar al usuario. Iconos que muestren 5, 10 15 articulos por pagina
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,16 +9,12 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu principal</title>
+
 </head>
 
 <body>
     <div class="contenidor">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+    
         <section class="articles">
             <ul>
                 <?php
@@ -49,10 +45,6 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
                     $pagina = 1;
                 }
 
-                // Código para cargar los artículos de la página $pagina
-
-
-                // Definir el número de artículos por página
 
 
                 // Calcular desde qué artículo iniciar
@@ -66,13 +58,13 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
                 if (isset($user_id) && $user_id != null) {
                     $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA, $user_id);
                     // Mostrar los artículos del usuario
-                    require_once 'vista/articles/Mostrar.php';
+                    require_once 'vista/animal/Mostrar.php';
                     listarArticulos($articles, 'editar');
                     //Listo todos los articulos:
                 } else {
                     $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA);
                     // Mostrar todos los artículos
-                    require_once 'vista/articles/Mostrar.php';
+                    require_once 'vista/animal/Mostrar.php';
                     listarArticulos($articles);
                 }
                 ?>

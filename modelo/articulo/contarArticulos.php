@@ -7,12 +7,12 @@ function contarArticulos($usuario_id = null)
 
      
         if ($usuario_id) {
-            $sql = "SELECT COUNT(*) FROM articles WHERE usuario_id = :usuario_id";
+            $sql = "SELECT COUNT(*) FROM animales WHERE usuario_id = :usuario_id";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':usuario_id', $usuario_id, PDO::PARAM_INT); 
         } else {
             // Si no se proporciona usuario_id, cuenta todos los artículos
-            $sql = "SELECT COUNT(*) FROM articles";
+            $sql = "SELECT COUNT(*) FROM animales";
             $stmt = $pdo->prepare($sql);
         }
 

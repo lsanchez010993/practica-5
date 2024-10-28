@@ -13,7 +13,7 @@ function eliminarArticulo($id)
         require_once __DIR__ . '/../conexion.php';
 
         $pdo = connectarBD();
-        $sql = "DELETE FROM articles WHERE id = :id";
+        $sql = "DELETE FROM animales WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
