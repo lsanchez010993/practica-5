@@ -13,17 +13,17 @@ class Mensajes{
     
     const MENSAJE_EXITO_CREAR_USUARIO = '¡Usuario registrado con éxito!';
     const MENSAJE_ACTUALIZACION_CORRECTA = 'El articulo ha sido modificado correctamente';
-    const EXITO_INSERTAR_ARTICULO = 'Articulo insertado con exito';
-    const CONFIRMAR_ACTUALIZACION = "¿Estás seguro de que quieres actualizar este artículo?";
-    const CONFIRMAR_CREAR_ARTICULO = "¿Estás seguro de que quieres insertar un nuevo artículo?";
-    const CONFIRMAR_ELIMINACION = "¿Estás seguro de que quieres eliminar este artículo?";
-    const NO_ARTICULOS = "Aún no has insertado ningun artículo";
+    const EXITO_INSERTAR_ANIMAL = 'Animal insertado con exito';
+    const CONFIRMAR_ACTUALIZACION = "¿Estás seguro de que quieres actualizar este animal?";
+    const CONFIRMAR_CREAR_ANIMAL = "¿Estás seguro de que quieres insertar un nuevo animal?";
+    const CONFIRMAR_ELIMINACION = "¿Estás seguro de que quieres eliminar este animal?";
+    const NO_ANIMALES = "Aún no has insertado ningun animal";
 
 }
-class ErroresArticulos{
-    const ARTICULO_NO_ENCONTRADO = 'Articulo no encontrado';
-    const CUERPO_MENSAJE_VACIO = 'El cuerpo del mensaje no puede estar vacio.';
-    const CAMPO_TITULO_VACIO = 'El titulo no puede estar vacio.';
+class ErroresAnimales{
+    const ANIMAL_NO_ENCONTRADO = 'Animal no encontrado';
+    const INFORMACION_ANIMAL_VACIO = 'El campo informacion no puede estar vacio.';
+    const CAMPO_NOMBRE_VACIO = 'El nombre comun no puede estar vacio.';
 }
 Class ErroresInicioSesion{
     const ERROR_INICIO_SESION = 'El usuario o la contraseña no son correctos';

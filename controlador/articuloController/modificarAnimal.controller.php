@@ -23,7 +23,7 @@ function leerAnimal()
        
     } else {
         require_once '../../controlador/errores/errores.php';
-        $result['errores'] = ErroresArticulos::ARTICULO_NO_ENCONTRADO;
+        $result['errores'] = ErroresAnimales::ANIMAL_NO_ENCONTRADO;
     }
 
     return $result; // Devolver los datos y los errores para usarlos en la vista

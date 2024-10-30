@@ -85,7 +85,7 @@ function listarArticulos($animales, $accion = null, $paginaActual = 1, $totalPag
             echo '</div>';
         }
     } else {
-        echo Mensajes::NO_ARTICULOS;
+        echo Mensajes::NO_ANIMALES;
     }
 }
 ?>

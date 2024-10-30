@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($resultado === true) {
                 require_once '../../controlador/errores/errores.php';
-                $correcto = Mensajes::EXITO_INSERTAR_ARTICULO;
+                $correcto = Mensajes::EXITO_INSERTAR_ANIMAL;
             } else {
                 $errores[] = 'Error al insertar el artículo en la base de datos.';
             }

@@ -52,13 +52,13 @@ if (!empty($correcto)) {
 
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data" onsubmit="return confirmarCreacion();">
         <label for="nombre_comun">Nombre Común:</label>
-        <input type="text" name="nombre_comun" id="nombre_comun" value="<?php echo htmlspecialchars($nombre_comun); ?>" required><br>
+        <input type="text" name="nombre_comun" id="nombre_comun" value="<?php echo htmlspecialchars($nombre_comun); ?>" ><br>
 
         <label for="nombre_cientifico">Nombre Científico:</label>
-        <input type="text" name="nombre_cientifico" id="nombre_cientifico" value="<?php echo htmlspecialchars($nombre_cientifico); ?>" required><br>
+        <input type="text" name="nombre_cientifico" id="nombre_cientifico" value="<?php echo htmlspecialchars($nombre_cientifico); ?>" ><br>
 
         <label for="descripcion">Descripción:</label>
-        <textarea name="descripcion" id="descripcion" required><?php echo htmlspecialchars($descripcion); ?></textarea><br>
+        <textarea name="descripcion" id="descripcion" ><?php echo htmlspecialchars($descripcion); ?></textarea><br>
 
         <label for="imagen">Selecciona una imagen:</label>
         <input type="file" name="imagen" id="imagen" accept="image/*"><br><br>
