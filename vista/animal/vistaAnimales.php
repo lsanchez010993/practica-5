@@ -18,6 +18,7 @@ const ARTICULOS_POR_PAGINA = 4; //Esta opcion se le podria preguntar al usuario.
         <section class="articles">
             <ul>
                 <?php
+                //hola hola hola
                 //Si el usuario ha iniciado sesion... verificarSesion() controla el tiempo que estara abierta la sesion
                 if (isset($_SESSION['nombre_usuario'])) {
 
@@ -26,26 +27,27 @@ const ARTICULOS_POR_PAGINA = 4; //Esta opcion se le podria preguntar al usuario.
                     verificarSesion();
                 }
 
-                // Establecer la página actual
+              
                
                 require_once __DIR__ . '../../../modelo/conexion.php';
+                
                 require_once 'modelo/articulo/contarAnimal.php';
-                // Número total de artículos (puedes obtener esto de tu base de datos)
-                $totalArticulos = contarArticulos(); // Asume que obtienes el total de artículos desde la base de datos
-
-                // Calcula el número total de páginas
+               
+                $totalArticulos = contarArticulos(); 
+               
+               
                 $totalPaginas = ceil($totalArticulos / ARTICULOS_POR_PAGINA);
 
-                // Obtiene el número de página de la URL. Si no existe, por defecto es 1
+              
                 $pagina = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-                // Si la página solicitada es menor que 1 o mayor que el total de páginas
+                
                 if ($pagina < 1 || $pagina > $totalPaginas) {
-                    // Redirige a la primera página
+                    
                     $pagina = 1;
                 }
 
-
+             
 
                 // Calcular desde qué artículo iniciar
                 $start = ($pagina > 1) ? ($pagina * ARTICULOS_POR_PAGINA) - ARTICULOS_POR_PAGINA : 0;
@@ -56,13 +58,20 @@ const ARTICULOS_POR_PAGINA = 4; //Esta opcion se le podria preguntar al usuario.
 
                 //Listo solo los articulos de un usuario
                 if (isset($user_id) && $user_id != null) {
+                   
                     $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA, $user_id);
+                  
+                   
                     // Mostrar los artículos del usuario
+                  
                     require_once 'vista/animal/Mostrar.php';
                     listarArticulos($articles, 'editar');
                     //Listo todos los articulos:
                 } else {
+                    
+                   
                     $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA);
+                   
                     // Mostrar todos los artículos
                     require_once 'vista/animal/Mostrar.php';
                     listarArticulos($articles);

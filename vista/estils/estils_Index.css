@@ -165,3 +165,28 @@ h2 {
     margin-bottom: 10px;
 }
 
+.nombre_comun{
+    font-size: 20px;
+    font-weight: bold;
+    color: #3f1213;
+}
+.nombre_cientifico{
+    font-size: 20px;
+    color: #1b4a81;
+}
+/* Estilo para el campo de descripción */
+.descripcion {
+    max-height: 50px; /* Altura predeterminada cuando está contraído */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: max-height 0.3s ease, white-space 0.3s ease;
+    cursor: pointer;
+}
+
+/* Expansión al pasar el ratón */
+.descripcion:hover {
+    max-height: 200px; /* Altura máxima cuando está expandido */
+    white-space: normal;
+    overflow-y: auto; /* Permite desplazamiento si el contenido es muy grande */
+}

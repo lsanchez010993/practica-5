@@ -3,9 +3,11 @@
 function limit_articulos_por_pagina($start, $animalesPerPage, $usuario_id = null)
 {
     try {
+       
+       
         require_once __DIR__ . '/../conexion.php';
         $pdo = connectarBD(); 
-
+       
         if ($usuario_id !== null) {
             $sql = "SELECT * FROM animales WHERE usuario_id = :usuario_id LIMIT :start, :animalesPerPage";
             $stmt = $pdo->prepare($sql);
@@ -25,7 +27,7 @@ function limit_articulos_por_pagina($start, $animalesPerPage, $usuario_id = null
         // Ejecuta la consulta y obtiene los resultados
         $stmt->execute();
         $animales = $stmt->fetchAll();
-
+        
         return $animales;
     } catch (PDOException $e) {
         

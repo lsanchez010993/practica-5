@@ -24,15 +24,16 @@ function listarArticulos($animales, $accion = null, $paginaActual = 1, $totalPag
 
         foreach ($animales as $animal) {
             echo '<div class="tarjeta">';
-            echo '<h2>' . htmlspecialchars($animal['nombre_comun']) . '</h2>';
-            echo '<h3>' . htmlspecialchars($animal['nombre_cientifico']) . '</h3>';
+            echo '<h2> <span class="nombre_comun">Nombre comun: <span>' . htmlspecialchars($animal['nombre_comun']) . '</h2>';
+            echo '<h3> <span class="nombre_cientifico">Nombre cientifico:<spn> ' . htmlspecialchars($animal['nombre_cientifico']) . '</h3>';
 
             // Verificar y mostrar la imagen del animal si está presente
             if (!empty($animal['ruta_imagen'])) {
                 echo '<img src="' . htmlspecialchars('vista/' . $animal['ruta_imagen']) . '" alt="Imagen del artículo" class="tarjeta-imagen">';
             }
 
-            echo '<p>' . htmlspecialchars($animal['descripcion']) . '</p>';
+            echo '<p class="descripcion">' . htmlspecialchars($animal['descripcion']) . '</p>';
+
 
             // Opciones de edición si corresponde
             if ($accion == 'editar') {
@@ -40,7 +41,7 @@ function listarArticulos($animales, $accion = null, $paginaActual = 1, $totalPag
                         <img src='./vista/imagenes/iconos/eliminar.png' alt='Eliminar' width='20' height='20'>
                       </a>";
 
-                echo "<a href='./vista/articles/modificarArticulo.vista.php?id=" . $animal['id'] . "'>
+                echo "<a href='./vista/animal/modificarAnimal.vista.php?id=" . $animal['id'] . "'>
                         <img src='./vista/imagenes/iconos/editar.png' alt='Editar' width='20' height='20'>
                       </a>";
             }
