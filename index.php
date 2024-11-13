@@ -1,46 +1,52 @@
+<?php
+session_start();
+$session_iniciada = isset($_SESSION['nombre_usuario']);
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu principal</title>
+    <title>Menú Principal</title>
     <link rel="stylesheet" href="vista/estils/estils_Index.css">
 </head>
 
 <body>
-    <?php
-    
-    session_start();
 
-    if (!isset($_SESSION['nombre_usuario'])) {
-        // El usuario no ha iniciado sesión
-       
-        
-  
-      
-        echo <<<HTML
-        <div class="inicio">
-         <button onclick="location.href='vista/usuaris/inicioSesion.form.php'">Iniciar Sesión</button>
-         <button onclick="location.href='vista/usuaris/crearUsuario.php'">Registrarse</button>
-         </div> 
-HTML;
-        include_once 'vista/animal/vistaAnimales.php';
-    } else {
-        $nombre = $_SESSION['nombre_usuario'];
-       
-        echo <<<HTML
-    <div class="inicio">
-    <h2>Bienvenido: $nombre </h2>;
-    <button onclick="location.href='vista/animal/insertarNuevoAnimal.php'">Insertar Nuevo Articulo</button>
-    <button onclick="location.href='modelo/user/cerrarSesion.php'">Cerrar Sesión</button>
+    <!-- Banner en la parte superior -->
+    <header class="banner">
+        <?php if ($session_iniciada) {
+            $nombre = $_SESSION['nombre_usuario'];
+            echo "<span class='nombre_usuario'>Bienvenido: $nombre</span>";
+        } ?>
+        <div class="menu menu-right">
+            <button class="menu-toggle"><?php echo $session_iniciada ? 'Menú' : 'No has iniciado sesión'; ?></button>
 
-  </div> 
+            <div class="menu-content">
+                <?php
+                if (!$session_iniciada) {
+                    // Opciones si la sesión no está iniciada
+                    echo <<<HTML
+                <button onclick="location.href='vista/usuaris/inicioSesion.form.php'">Iniciar Sesión</button>
+                <button onclick="location.href='vista/usuaris/crearUsuario.php'">Registrarse</button>
 HTML;
-        // Si el usuario ha iniciado sesión, mostrar artículos solo del usuario
-        include_once 'vista/animal/vistaAnimales.php';
-    }
-    ?>
+                } else {
+                    echo <<<HTML
+                <button onclick="location.href='vista/animal/insertarNuevoAnimal.php'">Insertar Nuevo Artículo</button>
+                <button onclick="location.href='modelo/user/cerrarSesion.php'">Cerrar Sesión</button>
+HTML;
+                }
+                ?>
+            </div>
+        </div>
+    </header>
+
+    <!-- Resto del contenido de la página -->
+    <main>
+        <?php include_once 'vista/animal/vistaAnimales.php'; ?>
+    </main>
+
 </body>
 
 </html>

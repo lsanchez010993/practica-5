@@ -66,6 +66,14 @@ h2 {
     margin: 5px 0;
 }
 
+.nombre_usuario {
+    text-align: center; /* Centra el texto dentro de su contenedor */
+    width: 100%; /* Hace que el h2 ocupe todo el ancho */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 29px;
+}
+
+
 /* Contenedor principal */
 .contenidor {
     width: 90%;
@@ -165,15 +173,17 @@ h2 {
     margin-bottom: 10px;
 }
 
-.nombre_comun{
+.nombre_comun {
     font-size: 20px;
     font-weight: bold;
     color: #3f1213;
 }
-.nombre_cientifico{
+
+.nombre_cientifico {
     font-size: 20px;
     color: #1b4a81;
 }
+
 /* Estilo para el campo de descripción */
 .descripcion {
     max-height: 50px; /* Altura predeterminada cuando está contraído */
@@ -190,3 +200,125 @@ h2 {
     white-space: normal;
     overflow-y: auto; /* Permite desplazamiento si el contenido es muy grande */
 }
+
+/* Estilo para el banner en la parte superior */
+.banner {
+    width: 100%;
+    background-color: #333;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Alineación del menú a la derecha */
+.menu-right {
+    margin-left: auto;
+    position: relative; /* Necesario para que el menú desplegable se posicione correctamente */
+}
+
+/* Botón principal del menú */
+.menu-toggle {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Contenedor de los elementos del menú (oculto por defecto) */
+.menu-content {
+    display: none;
+    position: absolute;
+    top: 100%; /* Coloca el menú justo debajo del botón */
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    z-index: 1;
+}
+
+/* Botones del menú desplegable */
+.menu-content button {
+    background-color: #f9f9f9;
+    color: black;
+    padding: 12px 16px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.menu-content button:hover {
+    background-color: #ddd;
+}
+
+/* Mostrar el menú cuando el ratón está sobre .menu-right o .menu-content */
+.menu-right:hover .menu-content,
+.menu-content:hover {
+    display: block;
+}
+
+
+/* Estilos para el contenedor de posts-per-page */
+.posts-per-page {
+    text-align: center; /* Centra el contenido dentro del contenedor */
+    margin-top: 20px;    /* Espacio superior similar al de .paginacio */
+}
+
+/* Estilos para el formulario dentro de posts-per-page */
+.posts-per-page form {
+    display: inline-flex;        /* Alinea los elementos en línea */
+    align-items: center;         /* Centra verticalmente los elementos */
+    gap: 10px;                   /* Espacio entre los elementos del formulario */
+    background: #424242;         /* Fondo similar a los enlaces de paginación */
+    padding: 10px 20px;          /* Relleno interno para una mejor apariencia */
+    border-radius: 5px;          /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+}
+
+/* Estilos para la etiqueta del selector */
+.posts-per-page label {
+    font-family: 'Open Sans Condensed', sans-serif; /* Fuente coherente */
+    color: #fff;                                   /* Texto en blanco para contraste */
+    font-size: 16px;                               /* Tamaño de fuente legible */
+}
+
+/* Estilos para el selector (select) */
+.posts-per-page select {
+    padding: 8px 12px;                             /* Relleno interno */
+    background: #424242;                           /* Fondo similar a los enlaces de paginación */
+    color: #fff;                                   /* Texto en blanco */
+    border: none;                                  /* Sin bordes predeterminados */
+    border-radius: 5px;                            /* Bordes redondeados */
+    font-family: 'Open Sans Condensed', sans-serif; /* Fuente coherente */
+    cursor: pointer;                               /* Cursor de puntero al pasar sobre el selector */
+    transition: background-color 0.3s ease;       /* Transición suave al interactuar */
+}
+
+/* Efecto hover para el selector */
+.posts-per-page select:hover {
+    background: #399228; /* Color de fondo al pasar el ratón, similar al hover de .paginacio */
+}
+
+/* Opcional: estilos para mantener la coherencia en dispositivos móviles */
+@media (max-width: 600px) {
+    .posts-per-page form {
+        flex-direction: column; /* Apila los elementos verticalmente en pantallas pequeñas */
+        gap: 5px;               /* Reduce el espacio entre elementos */
+    }
+
+    .posts-per-page label, 
+    .posts-per-page select {
+        width: 100%;            /* Ocupa todo el ancho disponible */
+        text-align: center;    /* Centra el texto */
+    }
+}
+
+

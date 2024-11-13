@@ -24,7 +24,7 @@ function listarArticulos($animales, $accion = null, $paginaActual = 1, $totalPag
 
         foreach ($animales as $animal) {
             echo '<div class="tarjeta">';
-            echo '<h2> <span class="nombre_comun">Nombre comun: <span>' . htmlspecialchars($animal['nombre_comun']) . '</h2>';
+            echo '<h2> <strong class="nombre_comun">Nombre comun: </strong>' . htmlspecialchars($animal['nombre_comun']) . ' </h2>';
             echo '<h3> <span class="nombre_cientifico">Nombre cientifico:<spn> ' . htmlspecialchars($animal['nombre_cientifico']) . '</h3>';
 
             // Verificar y mostrar la imagen del animal si está presente
@@ -49,10 +49,9 @@ function listarArticulos($animales, $accion = null, $paginaActual = 1, $totalPag
             echo '</div>'; // Cierra el div de la tarjeta
         }
 
-        // Cerrar el contenedor de tarjetas
         echo '</div>';
 
-        // Añadir la paginación si hay más de una página
+     
         if ($totalPaginas > 1) {
             echo '<div class="paginacio">';
             echo '<ul>';
