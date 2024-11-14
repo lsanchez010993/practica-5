@@ -18,6 +18,7 @@ class Mensajes{
     const CONFIRMAR_CREAR_ANIMAL = "¿Estás seguro de que quieres insertar un nuevo animal?";
     const CONFIRMAR_ELIMINACION = "¿Estás seguro de que quieres eliminar este animal?";
     const NO_ANIMALES = "Aún no has insertado ningun animal";
+    const PASS_CAMBIADO_OK = "Password Cambiado con exito";
 
 }
 class ErroresAnimales{

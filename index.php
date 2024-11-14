@@ -35,6 +35,8 @@ HTML;
                     echo <<<HTML
                 <button onclick="location.href='vista/animal/insertarNuevoAnimal.php'">Insertar Nuevo Artículo</button>
                 <button onclick="location.href='modelo/user/cerrarSesion.php'">Cerrar Sesión</button>
+                <button onclick="location.href='vista/usuaris/cambiarPass.php'">Cambiar Password</button>
+                
 HTML;
                 }
                 ?>

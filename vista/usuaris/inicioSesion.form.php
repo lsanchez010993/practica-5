@@ -4,6 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $errores = [];
     $nombre_usuario = $_POST['nombre_usuario'];
     $password = $_POST['password'];
+  
     require_once "../../controlador/userController/iniciarSesion.controller.php";
     $errores = iniciarSesionController($nombre_usuario, $password);
 }
