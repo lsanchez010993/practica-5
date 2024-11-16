@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $errores = [];
     $nombre_usuario = $_POST['nombre_usuario'];
     $password = $_POST['password'];
-  
+
     require_once "../../controlador/userController/iniciarSesion.controller.php";
     $errores = iniciarSesionController($nombre_usuario, $password);
 }
@@ -29,9 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <input type="password" name="password" required><br>
 
         <label>
-            <input type="checkbox" name="recordar" <?php echo isset($_COOKIE['nombre_usuario']) ? 'checked' : ''; ?>>
+            <input type="checkbox" name="recordar" value="on" <?php echo isset($_COOKIE['nombre_usuario']) ? 'checked' : ''; ?>>
             Recordarme
         </label><br>
+
 
         <button type="submit">Iniciar Sesión</button>
         <button type="button" onclick="location.href='../../index.php'">Atrás</button>

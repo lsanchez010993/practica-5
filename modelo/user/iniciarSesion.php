@@ -20,9 +20,10 @@ function iniciarSesion()
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (verificarPassword_BD($usuario, $password, $nombre_usuario)) {
+          
             // Si la contraseña es correcta, redirige
-            header("Location: ../../index.php");
-            exit();
+            // header("Location: ../../index.php");
+            // exit();
         } else {
                        $errores = [ErroresInicioSesion::ERROR_INICIO_SESION];
             require_once '../../vista/usuaris/inicioSesion.form.php';

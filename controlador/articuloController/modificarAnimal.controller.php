@@ -7,9 +7,16 @@ function leerAnimal()
         'nombre_cientifico' => '',
         'descripcion' => '',
         'ruta_imagen' => '',
-        'es_mamifero' => ''
+        'es_mamifero' => '',
+        'errores' => []
     ];
-    $result['id'] = $_GET['id'];
+
+    if (isset($_GET['id'])) {
+        $result['id'] = $_GET['id'];
+    } else {
+        $result['errores'][] = "No se proporcionó un ID de animal válido.";
+        return $result;
+    }
 
     require_once "../../modelo/articulo/obtenerAnimalPor_Id.php";
     $animal = obtenerAnimalPor_Id($result['id']);
@@ -20,10 +27,8 @@ function leerAnimal()
         $result['descripcion'] = $animal['descripcion'];
         $result['ruta_imagen'] = $animal['ruta_imagen'];
         $result['es_mamifero'] = $animal['es_mamifero'];
-       
     } else {
-        require_once '../../controlador/errores/errores.php';
-        $result['errores'] = ErroresAnimales::ANIMAL_NO_ENCONTRADO;
+        $result['errores'][] = "El animal no fue encontrado.";
     }
 
     return $result; // Devolver los datos y los errores para usarlos en la vista
@@ -31,13 +36,18 @@ function leerAnimal()
 
 function controllerModificarAnimal()
 {
-    require_once '../../controlador/errores/errores.php';
-
-    $nombre_comun = $_POST['nombre_comun'];
-    $nombre_cientifico = $_POST['nombre_cientifico'];
-    $descripcion = $_POST['descripcion'];
-    $es_mamifero = isset($_POST['es_mamifero']) ? $_POST['es_mamifero'] : null;
     $errores = [];
+
+    // Validar si se recibieron todos los campos necesarios
+    if (!isset($_POST['nombre_comun'], $_POST['nombre_cientifico'], $_POST['descripcion'], $_POST['es_mamifero'])) {
+        $errores[] = "Todos los campos son obligatorios.";
+        return $errores;
+    }
+
+    $nombre_comun = trim($_POST['nombre_comun']);
+    $nombre_cientifico = trim($_POST['nombre_cientifico']);
+    $descripcion = trim($_POST['descripcion']);
+    $es_mamifero = $_POST['es_mamifero'];
 
     // Validación de los campos
     if (empty($nombre_comun)) {
@@ -52,27 +62,27 @@ function controllerModificarAnimal()
 
     // Validación del campo es_mamifero (booleano)
     if ($es_mamifero !== '0' && $es_mamifero !== '1') {
-        $errores[] = "El campo 'Es Mamífero' debe estar seleccionado correctamente.";
-    }
-
-    // Si no hay errores, retornar true para proceder con la actualización
-    if (empty($errores)) {
-        return true;
+        $errores[] = "Debe seleccionar si el animal es mamífero u ovíparo.";
     }
 
     // Si hay errores, devolver el array de errores
-    return $errores;
-}
+    if (!empty($errores)) {
+        return $errores;
+    }
 
+    // Si no hay errores, retornar true para proceder con la actualización
+    return true;
+}
 
 function actualizar_animal($id, $nombre_comun, $nombre_cientifico, $descripcion, $rutaImagen, $es_mamifero)
 {
-    require_once "../../modelo/articulo/insertarAnimal.php";
+    require_once "../../modelo/articulo/insertarAnimal.php"; // Asegúrate de que este archivo existe y tiene la función actualizarAnimal()
 
     $resultado = actualizarAnimal($id, $nombre_comun, $nombre_cientifico, $descripcion, $rutaImagen, $es_mamifero);
 
     if ($resultado === true) {
-       
-        return Mensajes::MENSAJE_ACTUALIZACION_CORRECTA;
+        return "El animal se actualizó correctamente.";
+    } else {
+        return "Hubo un error al actualizar el animal.";
     }
 }

@@ -8,7 +8,7 @@ verificarSesion();
 $nombre_comun = '';
 $nombre_cientifico = '';
 $descripcion = '';
-$es_mamifero = '';
+$es_mamifero = '1'; // Por defecto, 'Mamifero' está seleccionado
 $errores = [];
 $correcto = '';
 
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre_comun = $_POST['nombre_comun'];
     $nombre_cientifico = $_POST['nombre_cientifico'];
     $descripcion = $_POST['descripcion'];
-    $es_mamifero = isset($_POST['es_mamifero']) ? 1 : 0; // Asignar 1 si está marcado, 0 si no
+    $es_mamifero = $_POST['es_mamifero']; // '1' para Mamifero, '0' para Ovipero
 }
 
 // Si el formulario se ha procesado correctamente, limpiar las variables
@@ -28,7 +28,7 @@ if (!empty($correcto)) {
     $nombre_comun = '';
     $nombre_cientifico = '';
     $descripcion = '';
-    $es_mamifero = '';
+    $es_mamifero = '1';
 }
 ?>
 
@@ -52,19 +52,24 @@ if (!empty($correcto)) {
 
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data" onsubmit="return confirmarCreacion();">
         <label for="nombre_comun">Nombre Común:</label>
-        <input type="text" name="nombre_comun" id="nombre_comun" value="<?php echo htmlspecialchars($nombre_comun); ?>" ><br>
+        <input type="text" name="nombre_comun" id="nombre_comun" value="<?php echo htmlspecialchars($nombre_comun); ?>"><br>
 
         <label for="nombre_cientifico">Nombre Científico:</label>
-        <input type="text" name="nombre_cientifico" id="nombre_cientifico" value="<?php echo htmlspecialchars($nombre_cientifico); ?>" ><br>
+        <input type="text" name="nombre_cientifico" id="nombre_cientifico" value="<?php echo htmlspecialchars($nombre_cientifico); ?>"><br>
 
         <label for="descripcion">Descripción:</label>
-        <textarea name="descripcion" id="descripcion" ><?php echo htmlspecialchars($descripcion); ?></textarea><br>
+        <textarea name="descripcion" id="descripcion"><?php echo htmlspecialchars($descripcion); ?></textarea><br>
 
         <label for="imagen">Selecciona una imagen:</label>
         <input type="file" name="imagen" id="imagen" accept="image/*"><br><br>
 
-        <label for="es_mamifero">¿Es Mamífero?</label>
-        <input type="checkbox" name="es_mamifero" id="es_mamifero" value="1" <?php echo $es_mamifero ? 'checked' : ''; ?>><br>
+        
+        
+        <label for="mamifero">Mamífero</label>
+        <input type="radio" name="es_mamifero" id="mamifero" value="1" <?php echo $es_mamifero === '1' ? 'checked' : ''; ?>>
+        <label for="ovipero">Ovípero</label>
+        <input type="radio" name="es_mamifero" id="ovipero" value="0" <?php echo $es_mamifero === '0' ? 'checked' : ''; ?>>
+        
 
         <button type="submit">Crear Animal</button>
         <button type="button" onclick="location.href='../../index.php'">Atrás</button>

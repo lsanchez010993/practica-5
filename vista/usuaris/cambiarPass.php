@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <div class="form-container">
     <h2>Cambiar Password</h2>
     <p>Introduce tu contraseña actual y luego la nueva contraseña</p>
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
         <label for="pass_Actual">Password actual</label>
         <input type="password" id="pass_Actual" name="pass_Actual" required><br>
 

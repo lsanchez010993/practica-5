@@ -12,8 +12,8 @@ $resultado = [
     'nombre_comun' => '',
     'nombre_cientifico' => '',
     'descripcion' => '',
-    'ruta_imagen' => '', // Inicializar ruta_imagen para evitar errores
-    'es_mamifero' => ''
+    'ruta_imagen' => '',
+    'es_mamifero' => '1' // Por defecto, 'Mamifero' está seleccionado
 ];
 
 // cargar los datos del animal
@@ -26,17 +26,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
 // Si es POST, se procesa la actualización
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtener los valores del formulario enviados por POST
+    $resultado['id'] = $_POST['id'];
     $resultado['nombre_comun'] = $_POST['nombre_comun'];
     $resultado['nombre_cientifico'] = $_POST['nombre_cientifico'];
     $resultado['descripcion'] = $_POST['descripcion'];
-    $resultado['es_mamifero'] = isset($_POST['es_mamifero']) ? 1 : 0;
+    $resultado['es_mamifero'] = $_POST['es_mamifero']; // '1' para Mamifero, '0' para Ovipero
+
+    // Obtener la ruta de la imagen actual si no se ha cargado una nueva
+    if (isset($_POST['ruta_imagen_actual'])) {
+        $resultado['ruta_imagen'] = $_POST['ruta_imagen_actual'];
+    }
 
     // Manejo de imagen cargada
     if (isset($_FILES['ruta_imagen']) && $_FILES['ruta_imagen']['error'] === UPLOAD_ERR_OK) {
         $rutaTemporal = $_FILES['ruta_imagen']['tmp_name'];
         $nombreArchivo = uniqid('img_', true) . '.' . pathinfo($_FILES['ruta_imagen']['name'], PATHINFO_EXTENSION);
         $rutaDestino = __DIR__ . '/../../vista/imagenes/imagenes/' . $nombreArchivo;
-        
+
         if (move_uploaded_file($rutaTemporal, $rutaDestino)) {
             $resultado['ruta_imagen'] = 'imagenes/imagenes/' . $nombreArchivo;
         } else {
@@ -49,10 +55,10 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($errores === true) {
         $exito = true;
         $correcto = actualizar_animal(
-            $_POST['id'],
-            $_POST['nombre_comun'],
-            $_POST['nombre_cientifico'],
-            $_POST['descripcion'],
+            $resultado['id'],
+            $resultado['nombre_comun'],
+            $resultado['nombre_cientifico'],
+            $resultado['descripcion'],
             $resultado['ruta_imagen'],
             $resultado['es_mamifero']
         );
@@ -92,6 +98,7 @@ if (!empty($resultado['errores'])) {
 
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) . '?id=' . urlencode($id); ?>" method="POST" enctype="multipart/form-data" onsubmit="return confirmarActualizacion();">
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
+        <input type="hidden" name="ruta_imagen_actual" value="<?php echo htmlspecialchars($ruta_imagen); ?>">
 
         <label for="nombre_comun">Nombre Común:</label>
         <input type="text" name="nombre_comun" id="nombre_comun" value="<?php echo htmlspecialchars($nombre_comun); ?>" required><br>
@@ -104,14 +111,17 @@ if (!empty($resultado['errores'])) {
 
         <label for="ruta_imagen">Imagen:</label>
         <input type="file" name="ruta_imagen" id="ruta_imagen" accept="image/*"><br>
-        
+
         <?php if (!empty($ruta_imagen)): ?>
             <p>Imagen actual:</p>
-            <img src="../../<?php echo htmlspecialchars($ruta_imagen); ?>" alt="Imagen del animal" width="150" height="100"><br>
+            <img src="../../<?php echo htmlspecialchars('vista/'.$ruta_imagen); ?>" alt="Imagen del animal" width="150" height="100"><br>
         <?php endif; ?>
 
-        <label for="es_mamifero">¿Es Mamífero?</label>
-        <input type="checkbox" name="es_mamifero" id="es_mamifero" value="1" <?php echo $es_mamifero ? 'checked' : ''; ?>><br>
+        <label>Tipo de Animal:</label><br>
+        <input type="radio" name="es_mamifero" id="mamifero" value="1" <?php echo $es_mamifero === '1' ? 'checked' : ''; ?>>
+        <label for="mamifero">Mamífero</label><br>
+        <input type="radio" name="es_mamifero" id="ovipero" value="0" <?php echo $es_mamifero === '0' ? 'checked' : ''; ?>>
+        <label for="ovipero">Ovípero</label><br><br>
 
         <?php if (!$exito) echo '<button type="submit">Actualizar Animal</button>'; ?>
 

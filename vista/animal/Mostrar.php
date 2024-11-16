@@ -24,8 +24,12 @@ function listarArticulos($animales, $accion = null, $paginaActual = 1, $totalPag
 
         foreach ($animales as $animal) {
             echo '<div class="tarjeta">';
-            echo '<h2> <strong class="nombre_comun">Nombre comun: </strong>' . htmlspecialchars($animal['nombre_comun']) . ' </h2>';
-            echo '<h3> <span class="nombre_cientifico">Nombre cientifico:<spn> ' . htmlspecialchars($animal['nombre_cientifico']) . '</h3>';
+            echo '<h2><strong class="nombre_comun">Nombre común: </strong>' . htmlspecialchars($animal['nombre_comun']) . '</h2>';
+            echo '<h3><span class="nombre_cientifico">Nombre científico: </span>' . htmlspecialchars($animal['nombre_cientifico']) . '</h3>';
+
+            // Añadir el campo 'es_mamifero'
+            $esMamiferoTexto = ($animal['es_mamifero'] == 1) ? 'Sí' : 'No';
+            echo '<p><strong>Mamífero: </strong>' . htmlspecialchars($esMamiferoTexto) . '</p>';
 
             // Verificar y mostrar la imagen del animal si está presente
             if (!empty($animal['ruta_imagen'])) {
@@ -33,7 +37,6 @@ function listarArticulos($animales, $accion = null, $paginaActual = 1, $totalPag
             }
 
             echo '<p class="descripcion">' . htmlspecialchars($animal['descripcion']) . '</p>';
-
 
             // Opciones de edición si corresponde
             if ($accion == 'editar') {
@@ -51,7 +54,6 @@ function listarArticulos($animales, $accion = null, $paginaActual = 1, $totalPag
 
         echo '</div>';
 
-     
         if ($totalPaginas > 1) {
             echo '<div class="paginacio">';
             echo '<ul>';
