@@ -19,10 +19,15 @@
 
                 // Verificar si el usuario ha iniciado sesión y controlar la sesión
                 if (isset($_SESSION['nombre_usuario'])) {
+
                     $nombre_usuario = $_SESSION['nombre_usuario'];
+                    $user_id = $_SESSION['usuario_id'];
                     require_once __DIR__ . '../../../controlador/userController/verificarSesion.php';
                     verificarSesion();
+                } else {
+                    $user_id = null;
                 }
+
 
                 require_once __DIR__ . '../../../modelo/conexion.php';
                 require_once 'modelo/articulo/contarAnimal.php';
@@ -59,27 +64,53 @@
                 // Calcular desde qué artículo iniciar
                 $start = ($pagina > 1) ? ($pagina * $articulosPorPagina) - $articulosPorPagina : 0;
 
+                // Obtener el criterio de ordenación
+                $orden = isset($_GET['orden']) ? $_GET['orden'] : 'nombre'; // Por defecto, ordenar por nombre
+
+                require_once __DIR__ . '../../../controlador/articuloController/ordenarPorTipo.php';
+
+                // Obtener los parámetros de entrada
+                $orden = $_GET['orden'] ?? 'nombre_asc';
+                $pagina = $_GET['page'] ?? 1;
+                $articulosPorPagina = $_GET['posts_per_page'] ?? 6;
+
+                // Calcular el inicio
+                $start = ($pagina > 1) ? ($pagina * $articulosPorPagina) - $articulosPorPagina : 0;
+
+                // Obtener los animales con el orden seleccionado
+                // $animales = obtenerAnimalesConOrden($start, $articulosPorPagina, $orden);
+                // Llamar a la función para obtener los artículos con orden y límite
                 require_once 'modelo/articulo/limit_animales_por_pagina.php';
 
-                // Obtener el ID del usuario si ha iniciado sesión
-                $user_id = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : null;
-
-                // Listar los artículos según el usuario
                 if (isset($user_id) && $user_id != null) {
-                    $articles = limit_articulos_por_pagina($start, $articulosPorPagina, $user_id);
+                    $articles = obtenerAnimalesConOrden($start, $articulosPorPagina, $orden);
                     require_once 'vista/animal/Mostrar.php';
                     listarArticulos($articles, 'editar');
                 } else {
-                    $articles = limit_articulos_por_pagina($start, $articulosPorPagina);
+                    $articles = obtenerAnimalesConOrden($start, $articulosPorPagina, $orden);
                     require_once 'vista/animal/Mostrar.php';
                     listarArticulos($articles);
                 }
+
                 ?>
             </ul>
         </section>
-     
-        <!-- Menú desplegable para seleccionar el número de artículos por página -->
-        <div class="posts-per-page">
+        <!-- Menú desplegable para ordenar los artículos -->
+        <div class="desplegable">
+            <form method="GET" action="">
+                <label for="orden">Ordenar por:</label>
+                <select name="orden" id="orden" onchange="this.form.submit()">
+                    <option value="nombre_asc" <?php if (isset($_GET['orden']) && $_GET['orden'] == 'nombre_asc') echo 'selected'; ?>>Nombre (Ascendente)</option>
+                    <option value="nombre_desc" <?php if (isset($_GET['orden']) && $_GET['orden'] == 'nombre_desc') echo 'selected'; ?>>Nombre (Descendente)</option>
+                    <option value="tipo_mamifero" <?php if (isset($_GET['orden']) && $_GET['orden'] == 'tipo_mamifero') echo 'selected'; ?>>Tipo (Mamíferos primero)</option>
+                    <option value="tipo_oviparo" <?php if (isset($_GET['orden']) && $_GET['orden'] == 'tipo_oviparo') echo 'selected'; ?>>Tipo (Ovíparos primero)</option>
+                </select>
+                <input type="hidden" name="page" value="<?php echo $pagina; ?>">
+                <input type="hidden" name="posts_per_page" value="<?php echo $articulosPorPagina; ?>">
+            </form>
+        </div>
+
+        <div class="desplegable">
             <form method="GET" action="">
                 <label for="posts_per_page">Artículos por página:</label>
                 <select name="posts_per_page" id="posts_per_page" onchange="this.form.submit()">
@@ -87,15 +118,16 @@
                     <option value="12" <?php if ($articulosPorPagina == 12) echo 'selected'; ?>>12</option>
                     <option value="16" <?php if ($articulosPorPagina == 16) echo 'selected'; ?>>16</option>
                 </select>
-                <!-- Mantener la página actual al cambiar el número de artículos por página -->
                 <input type="hidden" name="page" value="<?php echo $pagina; ?>">
             </form>
         </div>
+
 
         <section class="paginacio">
             <ul>
                 <?php
                 require_once 'modelo/articulo/contarAnimal.php';
+
                 $totalArticles = contarArticulos($user_id);
 
                 $totalPages = ceil($totalArticles / $articulosPorPagina);

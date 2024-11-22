@@ -264,34 +264,34 @@ h2 {
 .menu-content:hover {
     display: block;
 }
-
-
-/* Estilos para el contenedor de posts-per-page */
-.posts-per-page {
-    text-align: center; /* Centra el contenido dentro del contenedor */
-    margin-top: 20px;    /* Espacio superior similar al de .paginacio */
+/* Estilos para el contenedor de clase desplegable */
+.desplegable {
+    display: flex;       /* Alinea los formularios uno al lado del otro */
+    justify-content: center; /* Centra los formularios horizontalmente */
+    gap: 20px;           /* Espacio entre formularios */
+    margin-top: 20px;    /* Margen superior */
 }
 
-/* Estilos para el formulario dentro de posts-per-page */
-.posts-per-page form {
-    display: inline-flex;        /* Alinea los elementos en línea */
-    align-items: center;         /* Centra verticalmente los elementos */
-    gap: 10px;                   /* Espacio entre los elementos del formulario */
-    background: #424242;         /* Fondo similar a los enlaces de paginación */
-    padding: 10px 20px;          /* Relleno interno para una mejor apariencia */
-    border-radius: 5px;          /* Bordes redondeados */
+/* Estilos para el formulario dentro de desplegable */
+.desplegable form {
+    display: flex;        /* Alinea los elementos del formulario en línea */
+    align-items: center;  /* Centra los elementos verticalmente */
+    gap: 10px;            /* Espacio entre elementos del formulario */
+    background: #424242;  /* Fondo similar a los enlaces de paginación */
+    padding: 10px 20px;   /* Relleno interno para una mejor apariencia */
+    border-radius: 5px;   /* Bordes redondeados */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
 }
 
 /* Estilos para la etiqueta del selector */
-.posts-per-page label {
+.desplegable label {
     font-family: 'Open Sans Condensed', sans-serif; /* Fuente coherente */
     color: #fff;                                   /* Texto en blanco para contraste */
     font-size: 16px;                               /* Tamaño de fuente legible */
 }
 
 /* Estilos para el selector (select) */
-.posts-per-page select {
+.desplegable select {
     padding: 8px 12px;                             /* Relleno interno */
     background: #424242;                           /* Fondo similar a los enlaces de paginación */
     color: #fff;                                   /* Texto en blanco */
@@ -299,26 +299,11 @@ h2 {
     border-radius: 5px;                            /* Bordes redondeados */
     font-family: 'Open Sans Condensed', sans-serif; /* Fuente coherente */
     cursor: pointer;                               /* Cursor de puntero al pasar sobre el selector */
-    transition: background-color 0.3s ease;       /* Transición suave al interactuar */
+    transition: background-color 0.3s ease;        /* Transición suave al interactuar */
 }
 
 /* Efecto hover para el selector */
-.posts-per-page select:hover {
-    background: #399228; /* Color de fondo al pasar el ratón, similar al hover de .paginacio */
+.desplegable select:hover {
+    background: #121612; /* Color de fondo al pasar el ratón */
 }
-
-/* Opcional: estilos para mantener la coherencia en dispositivos móviles */
-@media (max-width: 600px) {
-    .posts-per-page form {
-        flex-direction: column; /* Apila los elementos verticalmente en pantallas pequeñas */
-        gap: 5px;               /* Reduce el espacio entre elementos */
-    }
-
-    .posts-per-page label, 
-    .posts-per-page select {
-        width: 100%;            /* Ocupa todo el ancho disponible */
-        text-align: center;    /* Centra el texto */
-    }
-}
-
 

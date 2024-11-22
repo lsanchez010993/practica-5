@@ -1,6 +1,6 @@
 <?php
 
-function limit_articulos_por_pagina($start, $animalesPerPage, $usuario_id = null)
+function limit_animales_por_pagina($start, $animalesPerPage, $usuario_id = null)
 {
     try {
        
