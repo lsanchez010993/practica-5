@@ -17,6 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <title>Inicio de Sesión</title>
     <link rel="stylesheet" href="../estils/estilos_formulario.css">
+    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </head>
 
 <body>
@@ -33,6 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             Recordarme
         </label><br>
 
+        <!-- Mostrar reCAPTCHA solo después de tres intentos fallidos -->
+        <?php if (isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 3): ?>
+            <div class="g-recaptcha" data-sitekey="6LdQLocqAAAAAGP8fTS5d1kbSY3f-KjAQRQOMTIp"></div>
+        <?php endif; ?>
 
         <button type="submit">Iniciar Sesión</button>
         <button type="button" onclick="location.href='../../index.php'">Atrás</button>
