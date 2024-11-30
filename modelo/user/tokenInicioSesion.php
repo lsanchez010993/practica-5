@@ -1,14 +1,17 @@
 <?php
 
+if (isset($_SESSION['nombre_usuario'])){
+    session_start();
+}
 
-session_start(); // Asegúrate de que esté en la primera línea del script.
+ // Asegúrate de que esté en la primera línea del script.
 
 function almacenarTokenEnBD($nombre_usuario, $token)
 {
     // require_once '../../modelo/conexion.php';
 
     $pdo = connectarBD();
-    var_dump($pdo);
+   
 
 
     $sql = "UPDATE usuarios SET token = :token WHERE nombre_usuario = :nombre_usuario";

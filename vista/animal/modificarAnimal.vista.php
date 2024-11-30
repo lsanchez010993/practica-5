@@ -16,6 +16,21 @@ $resultado = [
     'es_mamifero' => '1' // Por defecto, 'Mamifero' está seleccionado
 ];
 
+// Si la sesion administrar esta definida es por que el administrador ha entrado desde la vista en modo administrar
+// debido a eso la redireccion al index debe ser pasandole el valor administrar para que cargue todos los articulos
+// en modo editar.
+
+if (isset($_SESSION['administrar'])){
+    
+    $rutaRedireccion= '../../index.php?administrar=true';
+}else $rutaRedireccion= '../../index.php';
+
+
+
+
+
+
+
 // cargar los datos del animal
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     $resultado = leerAnimal();
@@ -125,7 +140,8 @@ if (!empty($resultado['errores'])) {
 
         <?php if (!$exito) echo '<button type="submit">Actualizar Animal</button>'; ?>
 
-        <button type="button" onclick="location.href='../../index.php'">Atrás</button>
+        <button type="button" onclick="location.href='<?php echo $rutaRedireccion; ?>'">Atrás</button>
+
 
         <?php
         // Mostrar mensaje de éxito si el animal se actualizó correctamente

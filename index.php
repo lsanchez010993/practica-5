@@ -8,6 +8,15 @@ if (!isset($_SESSION['nombre_usuario'])) {
 
 // Establecemos la variable para verificar si la sesión está iniciada
 $session_iniciada = isset($_SESSION['nombre_usuario']);
+$nombre = $session_iniciada ? $_SESSION['nombre_usuario'] : null;
+
+$administrar = false;
+
+// Verificar si el usuario es administrador
+if ($session_iniciada && $nombre === 'admin') {
+    $administrar = isset($_GET['administrar']) && $_GET['administrar'] === 'true';
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,7 +25,10 @@ $session_iniciada = isset($_SESSION['nombre_usuario']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú Principal</title>
-    <link rel="stylesheet" href="vista/estils/estils_Index.css">
+    <link rel="stylesheet" href="vista/estils/header.menu.css">
+
+
+
 </head>
 
 <body>
@@ -24,10 +36,25 @@ $session_iniciada = isset($_SESSION['nombre_usuario']);
     <!-- Banner en la parte superior -->
     <header class="banner">
         <?php if ($session_iniciada): ?>
-            <?php $nombre = $_SESSION['nombre_usuario']; ?>
-            <span class="nombre_usuario">Bienvenido: <?php echo htmlspecialchars($nombre); ?></span>
+            <?php if ($administrar): ?>
+                
+                <?php $_SESSION['administrar'] = $administrar; 
+             
+                ?>
+                <!-- Mostrar solo el panel de administración -->
+                <span class="nombre_usuario">Panel de administración: </span>
+                <button onclick="location.href='controlador/userController/eliminarNombreSession.php?variable=nombre_variable'">Atrás</button>
+            <?php else: ?>
+                <div class="submenu">
+                    <!-- Mostrar el mensaje de bienvenida si no está en modo administración -->
+                     
+                    <span class="nombre_usuario">Bienvenido: <?php echo htmlspecialchars($nombre); ?></span>
+                </div>
+            <?php endif; ?>
         <?php endif; ?>
-        
+
+
+
         <div class="menu menu-right">
             <button class="menu-toggle">
                 <?php echo $session_iniciada ? 'Menú' : 'No has iniciado sesión'; ?>
@@ -39,6 +66,17 @@ $session_iniciada = isset($_SESSION['nombre_usuario']);
                     <button onclick="location.href='vista/usuaris/inicioSesion.form.php'">Iniciar Sesión</button>
                     <button onclick="location.href='vista/usuaris/crearUsuario.php'">Registrarse</button>
                 <?php else: ?>
+                    <?php if ($nombre === 'admin'): ?>
+                        <!-- Submenú para Administrar -->
+                        <div class="submenu">
+                            <button class="submenu-toggle">Administrar</button>
+                            <div class="submenu-content">
+                                <button onclick="location.href='controlador/userController/administrarUsuarios.php'">Administrar Usuarios</button>
+                                <button onclick="location.href='index.php?administrar=true'">Administrar Animales</button>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
                     <!-- Opciones si la sesión está iniciada -->
                     <button onclick="location.href='vista/animal/insertarNuevoAnimal.php'">Insertar Nuevo Artículo</button>
                     <button onclick="location.href='modelo/user/cerrarSesion.php'">Cerrar Sesión</button>
@@ -48,7 +86,6 @@ $session_iniciada = isset($_SESSION['nombre_usuario']);
         </div>
     </header>
 
-   
     <main>
         <?php include_once 'vista/animal/vistaAnimales.php'; ?>
     </main>

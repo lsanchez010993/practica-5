@@ -201,69 +201,8 @@ h2 {
     overflow-y: auto; /* Permite desplazamiento si el contenido es muy grande */
 }
 
-/* Estilo para el banner en la parte superior */
-.banner {
-    width: 100%;
-    background-color: #333;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
 
-/* Alineación del menú a la derecha */
-.menu-right {
-    margin-left: auto;
-    position: relative; /* Necesario para que el menú desplegable se posicione correctamente */
-}
 
-/* Botón principal del menú */
-.menu-toggle {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-/* Contenedor de los elementos del menú (oculto por defecto) */
-.menu-content {
-    display: none;
-    position: absolute;
-    top: 100%; /* Coloca el menú justo debajo del botón */
-    right: 0;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    border-radius: 4px;
-    z-index: 1;
-}
-
-/* Botones del menú desplegable */
-.menu-content button {
-    background-color: #f9f9f9;
-    color: black;
-    padding: 12px 16px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    cursor: pointer;
-}
-
-.menu-content button:hover {
-    background-color: #ddd;
-}
-
-/* Mostrar el menú cuando el ratón está sobre .menu-right o .menu-content */
-.menu-right:hover .menu-content,
-.menu-content:hover {
-    display: block;
-}
 /* Estilos para el contenedor de clase desplegable */
 .desplegable {
     display: flex;       /* Alinea los formularios uno al lado del otro */

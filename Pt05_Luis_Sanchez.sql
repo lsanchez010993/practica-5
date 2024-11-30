@@ -78,9 +78,17 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre_usuario`, `email`, `password`) VALUES
+
+(0, 'anonymous', 'anonymous@example.com', ''),
 (1, 'luis', '1234@1234.com', '$2y$10$ouqONxD/UE.YV3twy/yVYudLM/PpdyeWWFDFbZ7sH1n3R/cEPTdhO'),
 (7, '1234', '12@12.com', '$2y$10$ouqONxD/UE.YV3twy/yVYudLM/PpdyeWWFDFbZ7sH1n3R/cEPTdhO'),
-(3, 'pepe', '123@123.com', '$2y$10$ouqONxD/UE.YV3twy/yVYudLM/PpdyeWWFDFbZ7sH1n3R/cEPTdhO');
+(3, 'pepe', '123@123.com', '$2y$10$ouqONxD/UE.YV3twy/yVYudLM/PpdyeWWFDFbZ7sH1n3R/cEPTdhO'),
+(4, 'admin', '1553@admin.com', '$2y$10$ouqONxD/UE.YV3twy/yVYudLM/PpdyeWWFDFbZ7sH1n3R/cEPTdhO');
+
+
+ALTER TABLE `usuarios`
+ADD COLUMN token VARCHAR(255);
+
 
 -- --------------------------------------------------------
 
@@ -89,6 +97,7 @@ INSERT INTO `usuarios` (`id`, `nombre_usuario`, `email`, `password`) VALUES
 --
 
 -- Índices para la tabla `animales`
+
 ALTER TABLE `animales`
   ADD KEY `usuario_id` (`usuario_id`);
 

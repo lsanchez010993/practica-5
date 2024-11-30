@@ -1,8 +1,8 @@
 <?php
-// controlador/animalController.php
+
 require_once __DIR__ . '../../../modelo/articulo/ordenacionAnimales.php';
 
-function obtenerAnimalesConOrden($start, $articulosPorPagina, $orden) {
+function obtenerAnimalesConOrden($start, $articulosPorPagina, $orden, $usuario_id = null) {
     // Configurar el orden basado en la opción seleccionada
     switch ($orden) {
         case 'nombre_asc':
@@ -15,11 +15,11 @@ function obtenerAnimalesConOrden($start, $articulosPorPagina, $orden) {
             break;
         case 'tipo_mamifero':
             $columnaOrden = 'es_mamifero';
-            $direccionOrden = 'DESC'; // Mamíferos primero (1)
+            $direccionOrden = 'DESC'; 
             break;
         case 'tipo_oviparo':
             $columnaOrden = 'es_mamifero';
-            $direccionOrden = 'ASC'; // Ovíparos primero (0)
+            $direccionOrden = 'ASC'; 
             break;
         default:
             $columnaOrden = 'nombre_comun';
@@ -27,6 +27,9 @@ function obtenerAnimalesConOrden($start, $articulosPorPagina, $orden) {
     }
 
     // Llamar al modelo con los parámetros establecidos
-    return obtenerAnimalesDesdeModelo($start, $articulosPorPagina, $columnaOrden, $direccionOrden);
+    if ($usuario_id!=null){
+        return obtenerAnimalesPorID($start, $articulosPorPagina, $columnaOrden, $direccionOrden, $usuario_id);
+    }else return obtenerTodosAnimales($start, $articulosPorPagina, $columnaOrden, $direccionOrden);
+   
 }
 ?>

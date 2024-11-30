@@ -1,4 +1,3 @@
-
 <?php
 function iniciarSesionController($nombre_usuario, $password)
 {
@@ -11,6 +10,25 @@ function iniciarSesionController($nombre_usuario, $password)
     }
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+        // Si el número de intentos es 3 o más, validar reCAPTCHA
+        if ($_SESSION['login_attempts'] >= 3) {
+            if (!isset($_POST['g-recaptcha-response']) || empty($_POST['g-recaptcha-response'])) {
+                $errores[] = 'Por favor, completa el reCAPTCHA.';
+                return $errores;
+            } else {
+                $recaptcha_secret = '6LdQLocqAAAAAHFW4ZpczXoarU5AE5JoR5mfnJPd';
+                $recaptcha_response = $_POST['g-recaptcha-response'];
+                $recaptcha = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$recaptcha_secret&response=$recaptcha_response");
+                $recaptcha = json_decode($recaptcha);
+
+                if (!$recaptcha->success) {
+                    $errores[] = 'La verificación de reCAPTCHA ha fallado. Inténtalo de nuevo.';
+                    return $errores;
+                }
+            }
+        }
+
         // Validación de la contraseña
         require_once "validarPassword.php";
         $password_ok = comprobarPassword($password);
@@ -20,6 +38,9 @@ function iniciarSesionController($nombre_usuario, $password)
             $errores = iniciarSesion($nombre_usuario, $password);
 
             if (empty($errores)) {
+                // Reiniciar los intentos de login
+                $_SESSION['login_attempts'] = 0;
+
                 // Verificar si el usuario seleccionó "Recordar"
                 if (isset($_POST['recordar']) && $_POST['recordar'] === 'on') {
                     // Generar un token seguro
@@ -36,27 +57,11 @@ function iniciarSesionController($nombre_usuario, $password)
                 return true; // Inicio de sesión exitoso
             } else {
                 $errores[] = 'Credenciales inválidas.';
+                $_SESSION['login_attempts']++; // Incrementa los intentos
             }
         } else {
-            $_SESSION['login_attempts']++;
-
-            if ($_SESSION['login_attempts'] >= 3) {
-                // Validar reCAPTCHA
-                if (!isset($_POST['g-recaptcha-response'])) {
-                    $errores[] = 'Por favor, completa el reCAPTCHA.';
-                } else {
-                    $recaptcha_secret = 'TU_SECRET_KEY';
-                    $recaptcha_response = $_POST['g-recaptcha-response'];
-                    $recaptcha = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$recaptcha_secret&response=$recaptcha_response");
-                    $recaptcha = json_decode($recaptcha);
-    
-                    if (!$recaptcha->success) {
-                        $errores[] = 'La verificación de reCAPTCHA ha fallado. Inténtalo de nuevo.';
-                    }
-                }
-            }
-
             $errores[] = ErroresPassword::CONTRASEÑA_INCORRECTA;
+            $_SESSION['login_attempts']++; // Incrementa los intentos
         }
     }
 
