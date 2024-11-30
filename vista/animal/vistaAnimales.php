@@ -11,7 +11,7 @@
 <body>
     <div class="contenidor">
         <?php
-        require_once __DIR__ . '../../../vista/animal/vistaModularAnimales/funciones.php';
+        require_once __DIR__ . '../../../vista/animal/funciones.php';
         // Obtener los parámetros iniciales
         $params = iniciarSesionYObtenerParametros();
 

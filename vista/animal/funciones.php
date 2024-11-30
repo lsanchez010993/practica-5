@@ -1,9 +1,9 @@
 <?php
 function obtenerArticulosYTotal($params) {
-    require_once __DIR__ . '../../../../controlador/articuloController/ordenarPorTipo.php';
-    require_once __DIR__ . '../../../../modelo/conexion.php';
-    require_once __DIR__ . '../../../../modelo/articulo/contarAnimal.php';
-    require_once __DIR__ . '../../../../modelo/articulo/limit_animales_por_pagina.php';
+    require_once __DIR__ . '../../../controlador/articuloController/ordenarPorTipo.php';
+    require_once __DIR__ . '../../../modelo/conexion.php';
+    require_once __DIR__ . '../../../modelo/articulo/contarAnimal.php';
+    require_once __DIR__ . '../../../modelo/articulo/limit_animales_por_pagina.php';
 
     // Calcular desde qué artículo iniciar
     $start = ($params['pagina'] - 1) * $params['articulosPorPagina'];
@@ -55,7 +55,7 @@ function iniciarSesionYObtenerParametros() {
         $nombre_usuario = $_SESSION['nombre_usuario'];
         $user_id = $_SESSION['usuario_id'];
         $is_admin = ($nombre_usuario === 'admin');
-        require_once __DIR__ . '../../../../controlador/userController/verificarSesion.php';
+        require_once __DIR__ . '../../../controlador/userController/verificarSesion.php';
         verificarSesion();
     } else {
         $nombre_usuario = null;
@@ -104,7 +104,7 @@ function iniciarSesionYObtenerParametros() {
     ];
 }
 function mostrarArticulos($articlesData, $administrar) {
-    require_once __DIR__ . '../../../../vista/animal/Mostrar.php';
+    require_once __DIR__ . '../../../vista/animal/Mostrar.php';
     $_SESSION['administrar'] = $administrar;
     // Mostrar los artículos
     if ($articlesData['show_edit']) {
@@ -158,7 +158,7 @@ function mostrarPostsPerPageForm($pagina, $orden, $articulosPorPagina, $administ
 }
 function mostrarPaginacion($totalArticles, $pagina, $articulosPorPagina, $orden, $administrar = false) 
 {
-    require_once __DIR__ . '../../../../modelo/articulo/contarAnimal.php';
+    require_once __DIR__ . '../../../modelo/articulo/contarAnimal.php';
 
     // Calcular el número total de páginas
     $totalPages = ceil($totalArticles / $articulosPorPagina);
