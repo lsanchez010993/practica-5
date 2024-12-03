@@ -19,8 +19,7 @@ function almacenarTokenEnBD($nombre_usuario, $token)
     $stmt->bindParam(':token', $token);
     $stmt->bindParam(':nombre_usuario', $nombre_usuario);
     $stmt->execute();
-    header("Location: ../../index.php");
-    exit();
+   
 }
 
 function verificarToken()
@@ -51,7 +50,7 @@ function verificarToken()
 }
 function cerrarSesion()
 {
-
+    
     require_once '../../modelo/conexion.php';
     $nombre_usuario = $_SESSION['nombre_usuario'];
 
@@ -60,7 +59,7 @@ function cerrarSesion()
     $stmt = $pdo->prepare("UPDATE usuarios SET token = NULL WHERE nombre_usuario = :nombre_usuario");
     $stmt->bindParam(':nombre_usuario', $nombre_usuario);
     $stmt->execute();
-
+    
     // Eliminar la cookie y destruir la sesión
     setcookie('remember_me', '', time() - 3600, "/");
     session_unset();

@@ -7,7 +7,7 @@ if (!isset($_SESSION['nombre_usuario']) || $_SESSION['nombre_usuario'] !== 'admi
     exit();
 }
 
-// require_once '../modelo/usuarioModelo.php';
+
 require_once __DIR__.'../../../modelo/user/editarUsuarios.php';
 
 // Verificar si se recibió el ID del usuario

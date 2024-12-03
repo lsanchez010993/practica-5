@@ -33,11 +33,21 @@ function iniciarSesionController($nombre_usuario, $password)
         require_once "validarPassword.php";
         $password_ok = comprobarPassword($password);
 
-        if ($password_ok === true) {
+
+        if ($password_ok == true) {
             require_once "../../modelo/user/iniciarSesion.php";
-            $errores = iniciarSesion($nombre_usuario, $password);
+            $usuario = iniciarSesion($nombre_usuario);
+            $_SESSION['nombre_usuario'] = $nombre_usuario;
+            if (verificarPassword_BD($usuario, $password, $nombre_usuario)) {
+
+                $errores = '';
+            } else {
+                $errores = [ErroresInicioSesion::ERROR_INICIO_SESION];
+            }
+
 
             if (empty($errores)) {
+
                 // Reiniciar los intentos de login
                 $_SESSION['login_attempts'] = 0;
 
@@ -49,12 +59,19 @@ function iniciarSesionController($nombre_usuario, $password)
                     require_once "../../modelo/user/tokenInicioSesion.php";
                     almacenarTokenEnBD($nombre_usuario, $token); // Almacenar token en la base de datos
 
+
                     // Guardar el token y el nombre de usuario en cookies
                     setcookie('token', $token, time() + (30 * 24 * 60 * 60), "/"); // 30 días
                     setcookie('nombre_usuario', $nombre_usuario, time() + (30 * 24 * 60 * 60), "/");
+
+                    header("Location: ../../index.php");
+                    exit();
+                }else{
+                    header("Location: ../../index.php");
+                    exit();
                 }
 
-                return true; // Inicio de sesión exitoso
+                
             } else {
                 $errores[] = 'Credenciales inválidas.';
                 $_SESSION['login_attempts']++; // Incrementa los intentos

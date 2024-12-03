@@ -46,7 +46,7 @@
                             <a href="../../controlador/userController/editarUsuarioController.php?id=<?php echo $usuario['id']; ?>">Editar</a> |
                             <a href="../../controlador/userController/eliminarUsuarioControlador.php?id=<?php echo $usuario['id']; ?>" >Eliminar</a>
 
-                            <!-- <a href="eliminar_usuario.php?id=<?php echo $usuario['id']; ?>" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">Eliminar</a> -->
+                          
                         </td>
                     </tr>
                 <?php endforeach; ?>

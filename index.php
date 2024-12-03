@@ -38,9 +38,7 @@ if ($session_iniciada && $nombre === 'admin') {
         <?php if ($session_iniciada): ?>
             <?php if ($administrar): ?>
                 
-                <?php $_SESSION['administrar'] = $administrar; 
-             
-                ?>
+                <?php $_SESSION['administrar'] = $administrar;?>
                 <!-- Mostrar solo el panel de administración -->
                 <span class="nombre_usuario">Panel de administración: </span>
                 <button onclick="location.href='controlador/userController/eliminarNombreSession.php?variable=nombre_variable'">Atrás</button>
@@ -65,6 +63,7 @@ if ($session_iniciada && $nombre === 'admin') {
                     <!-- Opciones si la sesión no está iniciada -->
                     <button onclick="location.href='vista/usuaris/inicioSesion.form.php'">Iniciar Sesión</button>
                     <button onclick="location.href='vista/usuaris/crearUsuario.php'">Registrarse</button>
+                    <button onclick="location.href='vista/usuaris/crearUsuario.php'">Recuperar contraseña</button>
                 <?php else: ?>
                     <?php if ($nombre === 'admin'): ?>
                         <!-- Submenú para Administrar -->
@@ -79,6 +78,7 @@ if ($session_iniciada && $nombre === 'admin') {
 
                     <!-- Opciones si la sesión está iniciada -->
                     <button onclick="location.href='vista/animal/insertarNuevoAnimal.php'">Insertar Nuevo Artículo</button>
+                    <button onclick="location.href='controlador/userController/editarPerfilesUser.php'">Editar Pefil</button>
                     <button onclick="location.href='modelo/user/cerrarSesion.php'">Cerrar Sesión</button>
                     <button onclick="location.href='vista/usuaris/cambiarPass.php'">Cambiar Password</button>
                 <?php endif; ?>
