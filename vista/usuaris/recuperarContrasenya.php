@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Recuperar Contraseña</title>
+</head>
+<body>
+    <h1>Recuperar Contraseña</h1>
+    <?php if (isset($error)) { echo "<p style='color:red;'>$error</p>"; } ?>
+    <?php if (isset($mensaje)) { echo "<p style='color:green;'>$mensaje</p>"; } ?>
+    <form action="../../controlador/userController/procesarRecuperacion.php" method="POST">
+        <label for="email">Introduce tu correo electrónico:</label>
+        <input type="email" name="email" id="email" required>
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

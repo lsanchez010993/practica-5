@@ -65,4 +65,7 @@ function verificarPassword_BD($usuario, $password, $nombre_usuario)
     } else {
         return false;
     }
+    
 }
+?>
+

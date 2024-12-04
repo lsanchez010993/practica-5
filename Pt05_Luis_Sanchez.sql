@@ -105,6 +105,11 @@ ADD COLUMN `avatar` VARCHAR(255) DEFAULT NULL AFTER `password`;
 ALTER TABLE `usuarios`
 ADD UNIQUE INDEX `idx_nombre_usuario` (`nombre_usuario`);
 
+ALTER TABLE `usuarios`
+ADD COLUMN `token_recuperacion` VARCHAR(64) DEFAULT NULL,
+ADD COLUMN `expiracion_token` DATETIME DEFAULT NULL;
+
+
 -- --------------------------------------------------------
 
 -- 

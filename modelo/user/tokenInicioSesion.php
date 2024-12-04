@@ -22,7 +22,7 @@ function almacenarTokenEnBD($nombre_usuario, $token)
    
 }
 
-function verificarToken()
+function verificarTokenSesion()
 {
     // require_once '../../modelo/conexion.php';
     if (isset($_COOKIE['remember_me'])) {

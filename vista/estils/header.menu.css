@@ -111,3 +111,37 @@
 .submenu-content button:hover {
     background-color: #ddd;
 }
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    padding-left: 30px;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+}
+.search-bar input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding-left: 30px;
+}
+.search-bar button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    padding-left: 30px;
+}
+.search-bar button:hover {
+    background-color: #0056b3;
+}

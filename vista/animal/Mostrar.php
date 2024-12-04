@@ -10,18 +10,37 @@ require_once __DIR__ . '../../../controlador/errores/errores.php';
 <?php
 
 // Función para listar los artículos y centrarlos en la página
-function listarArticulos($animales, $accion = null)
+function listarArticulos($animales, $accion = null, $resultadosBusqueda=null)
 {
+    
+
+    
+    if (!isset($resultadosBusqueda)) {
         $prefijoRutaImagen = 'vista/';
-        $prefijoIconoModificar = './';
-        $prefijoRutaModificar = './';
-        $prefijoIconoEliminar = './';
-        $prefijoRutaEliminar = './';
-  
+    } else {
+        
+        $prefijoRutaImagen = '../../vista/';
+    }
+
+   
+    
+    
+    $prefijoIconoModificar = './';
+    $prefijoRutaModificar = './';
+    $prefijoIconoEliminar = './';
+    $prefijoRutaEliminar = './';
+
+    //comprueba si el usuario ha iniciado sesion
     if (isset($_SESSION['nombre_usuario'])) {
         $nombre_usuario = $_SESSION['nombre_usuario'];
     }
 
+    if ($resultadosBusqueda && !empty($animales)){
+        echo "<h1>Animales encontrados</h1>";
+    }
+    if ($resultadosBusqueda && empty($animales)){
+        echo "<h1>No se han encontrado animales</h1>";
+    }
 
     // Verificar si hay artículos y mostrarlos
 
@@ -37,15 +56,14 @@ function listarArticulos($animales, $accion = null)
 
         foreach ($animales as $animal) {
             require_once __DIR__ . '../../../modelo/articulo/obtenerNombreUsuario.php';
-            
-           
+
+
             echo '<div class="tarjeta">';
-            
-            if (isset($nombre_usuario) && isset($_SESSION['administrar'])){
-                if ($nombre_usuario==='admin'){
-                   $nombreUsuario=obtenerNombreUsuarioPorAnimal($animal['usuario_id']);
-                   echo '<h2><strong class="nombre_comun">Nombre de usuario: </strong>' . htmlspecialchars($nombreUsuario) . '</h2>';
-                   
+
+            if (isset($nombre_usuario) && isset($_SESSION['administrar'])) {
+                if ($nombre_usuario === 'admin') {
+                    $nombreUsuario = obtenerNombreUsuarioPorAnimal($animal['usuario_id']);
+                    echo '<h2><strong class="nombre_comun">Nombre de usuario: </strong>' . htmlspecialchars($nombreUsuario) . '</h2>';
                 }
             }
             echo '<h2><strong class="nombre_comun">Nombre común: </strong>' . htmlspecialchars($animal['nombre_comun']) . '</h2>';
@@ -79,10 +97,11 @@ function listarArticulos($animales, $accion = null)
 
 
         echo '</div>';
-
-
     } else {
-        echo Mensajes::NO_ANIMALES;
+        if (!$resultadosBusqueda && empty($animales)){
+            echo Mensajes::NO_ANIMALES;
+        }
+        
     }
 }
 ?>

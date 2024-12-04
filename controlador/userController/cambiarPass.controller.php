@@ -8,4 +8,9 @@ function actualizarPassword_Controller($nombre_usuario, $nuevo_password){
     require_once '../../modelo/user/actualizarPassword.php';
     return actualizarPassword($nombre_usuario, $nuevo_password);
 }
+
+
+
 ?>
+
+

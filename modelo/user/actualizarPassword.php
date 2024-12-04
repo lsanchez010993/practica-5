@@ -42,6 +42,8 @@ function verificarPassCorrecto($nombre_usuario, $password)
         return false; // Error general
     }
 }
+
+
 ?>
 
 ?>

@@ -28,9 +28,38 @@ USUARIOS DE LA BD:
 1234
 luis
 paco
-paca
-pepe
-pedro
+admin
+
 
 CONTRASEÑA ÚNICA:
 !Q"W12qw
+
+# practica5-php
+
+
+## Tabla de Contenidos
+- [Características](#características)
+- [Configuraciones de Seguridad](#configuraciones-de-seguridad)
+- [Licencia](#licencia)
+
+
+## Características
+- Estructura de código modular siguiendo el patrón MVC
+- Registro de usuarios con verificación de nombres de usuario y correos únicos
+- Validación de contraseñas para cumplir con requisitos de seguridad
+- Gestión adecuada de sesiones para autenticación de usuarios
+- Implementación de cookies para recordar a los usuarios durante el inicio de sesión
+- Validación de entradas antes de ejecutar consultas SQL
+- Uso de constantes para mostrar mensajes y notificaciones
+- Estilo CSS básico para mejorar la interfaz de usuario
+
+
+## Configuraciones de Seguridad
+- **Verificación de Usuarios Únicos**: Se realizan comprobaciones para asegurar que los nombres de usuario y correos electrónicos sean únicos antes del registro.
+- **Validación de Contraseñas**: Las contraseñas se validan para cumplir con estándares de seguridad, incluyendo requisitos de complejidad.
+- **Validación de Entradas**: Todos los datos se validan en el servidor antes de ejecutar consultas SQL para prevenir inyecciones SQL.
+- **Gestión de Sesiones**: El manejo adecuado de sesiones garantiza la autenticación y autorización de usuarios.
+- **Implementación de Cookies**: Las cookies se usan en el controlador de inicio de sesión para recordar de forma segura a los usuarios.
+- **Constantes para Mensajes**: Los mensajes de error y notificaciones se gestionan usando constantes para consistencia.
+
+
