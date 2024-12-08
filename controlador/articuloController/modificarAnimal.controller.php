@@ -76,7 +76,7 @@ function controllerModificarAnimal()
 
 function actualizar_animal($id, $nombre_comun, $nombre_cientifico, $descripcion, $rutaImagen, $es_mamifero)
 {
-    require_once "../../modelo/articulo/insertarAnimal.php"; // Asegúrate de que este archivo existe y tiene la función actualizarAnimal()
+    require_once "../../modelo/articulo/insertarAnimal.php"; 
 
     $resultado = actualizarAnimal($id, $nombre_comun, $nombre_cientifico, $descripcion, $rutaImagen, $es_mamifero);
 

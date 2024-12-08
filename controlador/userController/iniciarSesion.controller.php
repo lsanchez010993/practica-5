@@ -48,13 +48,13 @@ function iniciarSesionController($nombre_usuario, $password)
 
             if (empty($errores)) {
 
-                // Reiniciar los intentos de login
+              
                 $_SESSION['login_attempts'] = 0;
 
                 // Verificar si el usuario seleccionó "Recordar"
                 if (isset($_POST['recordar']) && $_POST['recordar'] === 'on') {
                     // Generar un token seguro
-                    $token = bin2hex(random_bytes(32)); // 32 bytes = 64 caracteres hexadecimales
+                    $token = bin2hex(random_bytes(32)); 
 
                     require_once "../../modelo/user/tokenInicioSesion.php";
                     almacenarTokenEnBD($nombre_usuario, $token); // Almacenar token en la base de datos
@@ -74,11 +74,11 @@ function iniciarSesionController($nombre_usuario, $password)
                 
             } else {
                 $errores[] = 'Credenciales inválidas.';
-                $_SESSION['login_attempts']++; // Incrementa los intentos
+                $_SESSION['login_attempts']++; 
             }
         } else {
             $errores[] = ErroresPassword::CONTRASEÑA_INCORRECTA;
-            $_SESSION['login_attempts']++; // Incrementa los intentos
+            $_SESSION['login_attempts']++; 
         }
     }
 

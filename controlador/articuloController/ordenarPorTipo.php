@@ -3,7 +3,7 @@
 require_once __DIR__ . '../../../modelo/articulo/ordenacionAnimales.php';
 
 function obtenerAnimalesConOrden($start, $articulosPorPagina, $orden, $usuario_id = null) {
-    // Configurar el orden basado en la opción seleccionada
+    
     switch ($orden) {
         case 'nombre_asc':
             $columnaOrden = 'nombre_comun';
@@ -26,7 +26,7 @@ function obtenerAnimalesConOrden($start, $articulosPorPagina, $orden, $usuario_i
             $direccionOrden = 'ASC';
     }
 
-    // Llamar al modelo con los parámetros establecidos
+ 
     if ($usuario_id!=null){
         return obtenerAnimalesPorID($start, $articulosPorPagina, $columnaOrden, $direccionOrden, $usuario_id);
     }else return obtenerTodosAnimales($start, $articulosPorPagina, $columnaOrden, $direccionOrden);

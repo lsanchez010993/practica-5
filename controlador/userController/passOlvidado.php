@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../../modelo/user/userModel.php';
 
 
-require_once __DIR__ . '/../../vendor/phpmailer/src/PHPMailer.php'; // Si incluyes manualmente
+require_once __DIR__ . '/../../vendor/phpmailer/src/PHPMailer.php';
 
 
 require_once __DIR__ . '/../../vendor/phpmailer/src/Exception.php';
@@ -67,13 +67,13 @@ function procesarSolicitudRecuperacion($email)
                 <p>Haz clic en el siguiente enlace para recuperar tu contraseña:</p>
                 <p><a href="' . $enlace . '">' . $enlace . '</a></p>
                 <p>Si no solicitaste este cambio, puedes ignorar este correo.</p>
-                <p>Saludos,<br>Tu equipo.</p>
+                <p>Saludos.</p>
             ';
             $mail->AltBody = 'Hola ' . htmlspecialchars($usuario['nombre']) . ',\n\n'
                 . 'Haz clic en el siguiente enlace para recuperar tu contraseña:\n'
                 . $enlace . '\n\n'
                 . 'Si no solicitaste este cambio, puedes ignorar este correo.\n\n'
-                . 'Saludos,\nTu equipo.';
+                . 'Saludos.';
 
             $mail->send();
             return true;
@@ -92,7 +92,7 @@ function verificarYCambiarContrasenya($token, $password, $password_confirm) {
     $resultadoPassword = comprobarPassword($password, $password_confirm);
     
     if ($resultadoPassword !== true) {
-        // Si hay errores en la contraseña, los retornamos
+      
         return $resultadoPassword;
     }
     // var_dump($token);

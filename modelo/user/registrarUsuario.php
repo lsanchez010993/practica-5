@@ -2,13 +2,13 @@
 function registrarUsuario($nombre_usuario, $email, $password)
 {
     try {
-        // require_once "../../modelo/conexion.php"; 
+       
         $pdo = connectarBD();
 
-        // Hashear la contraseña
+        
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        // Insertar el usuario en la base de datos
+       
         $sql = "INSERT INTO usuarios (nombre_usuario, email, password) VALUES (:nombre_usuario, :email, :password)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':nombre_usuario', $nombre_usuario);

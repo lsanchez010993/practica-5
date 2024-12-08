@@ -8,7 +8,7 @@
 <body>
     <h1>Eliminar Usuario</h1>
     <p>¿Estás seguro de que deseas eliminar al usuario <strong><?php echo htmlspecialchars($usuario['nombre_usuario']); ?></strong>?</p>
-    <p>Selecciona una opción para los artículos asociados:</p>
+    <p>¿Qué quieres hacer con los articulos de ese usuario?:</p>
     <?php if (isset($error)): ?>
         <p class="error"><?php echo htmlspecialchars($error); ?></p>
     <?php endif; ?>

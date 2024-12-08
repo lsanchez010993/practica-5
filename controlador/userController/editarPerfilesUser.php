@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Verificar que el nickname es único
+  
     if ($usuario['nombre_usuario'] !== $nombre_usuario && !verificarNicknameUnico($nombre_usuario, $id)) {
         $error = "El nickname ya está en uso.";
     }
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Actualizar los datos del usuario
         if (actualizarPerfil($id, $nombre_usuario, $nombre, $apellido, $avatar)) {
             $mensaje = "Perfil actualizado correctamente.";
-            $usuario = obtenerDatosUsuario($id); // Actualizar los datos en pantalla
+            $usuario = obtenerDatosUsuario($id); 
         } else {
             $error = "Error al actualizar el perfil.";
         }

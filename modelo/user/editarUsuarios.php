@@ -17,7 +17,7 @@ function verUsuarios()
         $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $resultados;
     } catch (PDOException $e) {
-        // Manejar la excepción PDO
+       
         error_log("Error al obtener los usuarios: " . $e->getMessage());
         return false; // Devuelve false en caso de error
     }

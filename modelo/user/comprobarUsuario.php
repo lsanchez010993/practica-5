@@ -18,7 +18,7 @@ function usuarioRepetido($usuario)
         $count = $stmt->fetchColumn();
         return $count > 0;
     } catch (PDOException $e) {
-        // Manejar la excepción PDO
+        
         error_log("Error al verificar si el usuario está repetido: " . $e->getMessage());
         return false; // Devuelve false en caso de error
     }

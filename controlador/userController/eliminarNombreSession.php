@@ -8,7 +8,7 @@ function eliminarNombreSession($nombreVariable)
     }
   
 
-    // $ruta = __DIR__ . '../../../index.php';
+ 
     header("Location: ../../index.php");
     exit();
 }

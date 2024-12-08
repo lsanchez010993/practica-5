@@ -51,7 +51,7 @@ function verificarPassword_BD($usuario, $password, $nombre_usuario)
     // Verificar la contraseña
     if ($usuario && password_verify($password, $usuario['password'])) {
 
-        //Si el password es correcto inicio sesion y establezco el tiempo que durara la sesion del user.
+     
         require_once 'verificarSesion.php';
         inicioSesion();
 

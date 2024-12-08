@@ -17,14 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Iniciar Sesión</title>
-
-
-
-<head>
     <meta charset="UTF-8">
     <title>Inicio de Sesión</title>
     <link rel="stylesheet" href="../estils/estilos_formulario.css">
-    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+   
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>

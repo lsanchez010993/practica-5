@@ -10,7 +10,7 @@ function correoRepetido($email)
 
         $pdo = connectarBD();
 
-        // Consulta para verificar si el usuario ya existe
+       
         $sql = "SELECT COUNT(*) FROM usuarios WHERE LOWER(email) = :email";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':email', $email);
@@ -20,14 +20,14 @@ function correoRepetido($email)
     } catch (PDOException $e) {
        
         error_log("Error al verificar si el correo está repetido: " . $e->getMessage());
-        return false; // Devuelve false en caso de error
+        return false; 
     }
 }
 function verificarCorreo($email){
     require_once '../../modelo/conexion.php';
     $pdo = connectarBD();
 
-    // Verificar si el correo existe en la base de datos
+   
     $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE LOWER(email) = :email");
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->execute();

@@ -11,11 +11,11 @@ function verificarSesion()
         if (time() - $_SESSION['login_time'] > 2400) {
             session_unset();
             session_destroy();
-            // Redirigir 
+           
             header('Location: vista/usuaris/sesionExpirada.php');
             exit();
         } else {
-            // La sesión es válida, actualizamos el tiempo
+            
             $_SESSION['login_time'] = time();
         }
     } else {

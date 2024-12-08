@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errores[] = 'La descripción es obligatoria.';
         }
 
-        // Inicializar la ruta de la imagen en null
+        
         $rutaImagenBD = null;
 
         if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {

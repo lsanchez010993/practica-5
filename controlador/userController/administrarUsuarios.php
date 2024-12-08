@@ -11,6 +11,6 @@ require_once __DIR__.'../../../modelo/user/editarUsuarios.php';
 
 $usuarios = verUsuarios();
 
-// Cargar la vista y pasarle los datos
+
 require_once __DIR__ . '../../../vista/usuaris/administrarUsuarios.php';
 ?>

@@ -11,23 +11,23 @@ $errores = [];
 $correcto = '';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Obtener los datos del formulario
+    
     $passActual = $_POST['pass_Actual'];
     $PassNuevo = $_POST['Pass_Nuevo'];
     $confirmPassword = $_POST['confirm_password'];
     $nombre_user = $_SESSION['nombre_usuario'];
 
-    // Validación de la contraseña actual
+   
     require_once '../../controlador/userController/cambiarPass.controller.php';
     $esCorrecto = verificarPasswordCorrecto_Controller($nombre_user, $passActual);
 
     if ($esCorrecto) {
-        // Validar la nueva contraseña y confirmación
+        // Validar la nueva contraseña
         require_once '../../controlador/userController/validarPassword.php';
         $resultadoComprobacion = comprobarPassword($PassNuevo, $confirmPassword);
 
         if ($resultadoComprobacion === true) {
-            // No hay errores, procedemos a actualizar la contraseña
+            // No hay errores, actualizar la contraseña
             $resultado = actualizarPassword_Controller($nombre_user, $PassNuevo);
 
             if ($resultado) {
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $errores[] = "Error al actualizar el password.";
             }
         } else {
-            // Hay errores, los asignamos a la variable $errores
+            
             $errores = $resultadoComprobacion;
         }
     } else {
