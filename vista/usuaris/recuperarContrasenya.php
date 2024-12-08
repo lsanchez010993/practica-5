@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Recuperar Contraseña</title>
+    <link rel="stylesheet" href="../../vista/estils/estilos_formulario.css">
 </head>
 <body>
     <h1>Recuperar Contraseña</h1>
@@ -12,6 +13,7 @@
         <label for="email">Introduce tu correo electrónico:</label>
         <input type="email" name="email" id="email" required>
         <button type="submit">Enviar</button>
+        <button type="button" onclick="location.href='../../index.php'">Volver a inicio</button>
     </form>
 </body>
 </html>

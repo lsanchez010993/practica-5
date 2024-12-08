@@ -2,24 +2,9 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Gestión de Usuarios</title>
-    <style>
-        /* Estilos básicos */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        tr:hover {
-            background-color: #ddd;
-        }
-    </style>
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="../estils/estilos_formulario.css">
+    <link rel="stylesheet" href="../../vista/estils/estilos_formulario.css">
 </head>
 <body>
     <h1>Lista de Usuarios</h1>

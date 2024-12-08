@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../../modelo/user/userModel.php';
 
 
-require_once __DIR__ . '/../../vendor/PHPMailer/src/PHPMailer.php'; // Si incluyes manualmente
+require_once __DIR__ . '/../../vendor/phpmailer/src/PHPMailer.php'; // Si incluyes manualmente
 
 
 require_once __DIR__ . '/../../vendor/phpmailer/src/Exception.php';
@@ -31,22 +31,20 @@ function procesarSolicitudRecuperacion($email)
 
     if (guardarTokenRecuperacion($email, $token, $expiracion)) {
         // Enviar el correo electrónico con PHPMailer
-        // $enlace = "http://luissanchez.cat/vista/usuaris/cambiarContrasenya.php?token=" . urlencode($token);
-        $enlace = "localhost/practicas/practica5/vista/usuaris/cambiarContrasenya.php?token=" . urlencode($token);
+        $enlace = "http://luissanchez.cat/vista/usuaris/cambiarContrasenya.php?token=" . urlencode($token);
+        // $enlace = "localhost/practicas/practica5/vista/usuaris/cambiarContrasenya.php?token=" . urlencode($token);
 
         $mail = new PHPMailer(true);
 
         try {
-            // $mail->SMTPDebug = 2; // Puedes usar 2 o 3 para más detalles
-            // $mail->Debugoutput = 'html';
-            // Configuración del servidor SMTP
+    
             $mail->isSMTP();
             $mail->Host = 'mailsrv2.dondominio.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'admin@luissanchez.cat'; // Reemplaza con tu usuario de correo
-            $mail->Password = '!Q"W12qw'; // Reemplaza con tu contraseña de correo
-            $mail->SMTPSecure = 'tls'; // Prueba con 'tls', 'ssl' o ''
-            $mail->Port = 587; // Ajusta el puerto según el SMTPSecure
+            $mail->Username = 'admin@luissanchez.cat'; 
+            $mail->Password = '!Q"W12qw'; 
+            $mail->SMTPSecure = 'tls'; 
+            $mail->Port = 587; 
 
             // Opciones para deshabilitar la verificación del certificado
             $mail->SMTPOptions = array(
@@ -97,8 +95,11 @@ function verificarYCambiarContrasenya($token, $password, $password_confirm) {
         // Si hay errores en la contraseña, los retornamos
         return $resultadoPassword;
     }
-    
+    // var_dump($token);
     $usuario = verificarToken($token);
+
+    // var_dump($usuario);
+    // exit();
 
     if (!$usuario) {
         return ["El token ha expirado o no es válido."];

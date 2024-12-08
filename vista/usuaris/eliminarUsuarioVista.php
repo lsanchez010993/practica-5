@@ -3,30 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Eliminar Usuario</title>
-    <style>
-        /* Estilos básicos */
-        form {
-            width: 400px;
-            margin: 0 auto;
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-        input[type="submit"] {
-            padding: 8px 16px;
-            margin-top: 10px;
-        }
-        .error {
-            color: red;
-        }
-        .opcion {
-            margin-bottom: 10px;
-        }
-        h1, p{
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="../estils/estilos_formulario.css">
 </head>
 <body>
     <h1>Eliminar Usuario</h1>

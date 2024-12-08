@@ -9,9 +9,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $errores = iniciarSesionController($nombre_usuario, $password);
 }
 ?>
+<?php
 
+?>
 <!DOCTYPE html>
 <html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión</title>
+
+
 
 <head>
     <meta charset="UTF-8">

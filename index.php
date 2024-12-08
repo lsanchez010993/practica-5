@@ -1,5 +1,8 @@
 <?php
 session_start();
+// Obtener la URL solicitada
+
+// Despachar la URL al controlador correspondiente
 
 if (!isset($_SESSION['nombre_usuario'])) {
     require_once __DIR__ . '/modelo/user/tokenInicioSesion.php';
@@ -76,7 +79,7 @@ if ($session_iniciada && $nombre === 'admin') {
                         <button onclick="location.href='vista/usuaris/inicioSesion.form.php'">Iniciar Sesión</button>
                         <button onclick="location.href='vista/usuaris/crearUsuario.php'">Registrarse</button>
                         <button onclick="location.href='vista/usuaris/recuperarContrasenya.php'">Recuperar Contraseña</button>
-                        <!-- <button onclick="location.href='controlador/userController/cambiarPass.controller.php'">Recuperar Contraseña</button> -->
+
                     <?php else: ?>
                         <?php if ($nombre === 'admin'): ?>
                             <!-- Submenú para Administrar -->

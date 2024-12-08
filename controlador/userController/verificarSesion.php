@@ -12,7 +12,7 @@ function verificarSesion()
             session_unset();
             session_destroy();
             // Redirigir 
-            header('Location: ../vista/usuaris/sesionExpirada.php');
+            header('Location: vista/usuaris/sesionExpirada.php');
             exit();
         } else {
             // La sesión es válida, actualizamos el tiempo

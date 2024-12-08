@@ -4,30 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar Perfil</title>
-    <style>
-        form {
-            width: 400px;
-            margin: 0 auto;
-        }
-        label {
-            display: block;
-            margin-top: 10px;
-        }
-        input[type="text"], input[type="file"], button {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-        }
-        .mensaje {
-            color: green;
-        }
-        .error {
-            color: red;
-        }
-        .avatar {
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="../estils/estilos_formulario.css">
+    <link rel="stylesheet" href="../../vista/estils/estilos_formulario.css">
 </head>
 <body>
     <h1>Editar Perfil Personal</h1>
